@@ -33,6 +33,7 @@ stories:
     - intent: open_incident
     - intent: password_reset
     - intent: problem_email
+    - intent: problem_program
   - action: open_incident_form
   - active_loop: open_incident_form
   - intent: help
@@ -47,6 +48,7 @@ stories:
     - intent: open_incident
     - intent: password_reset
     - intent: problem_email
+    - intent: problem_program
   - action: open_incident_form
   - active_loop: open_incident_form
   - intent: out_of_scope
@@ -54,6 +56,28 @@ stories:
   - action: open_incident_form
   - active_loop: null
   - action: action_open_incident
+
+#- story: open incident form interrupted program
+#  steps:
+#  - intent: problem_program
+#  - action: open_incident_program_form
+#  - active_loop: open_incident_program_form
+#  - intent: help
+#  - action: utter_help
+#  - action: open_incident_program_form
+#  - active_loop: null
+#  - action: action_open_incident
+#
+#- story: open incident form interrupted program
+#  steps:
+#  - intent: problem_program
+#  - action: open_incident_program_form
+#  - active_loop: open_incident_program_form
+#  - intent: out_of_scope
+#  - action: utter_out_of_scope
+#  - action: open_incident_program_form
+#  - active_loop: null
+#  - action: action_open_incident
 
 - story: incident status form interrupted
   steps:
@@ -86,10 +110,22 @@ stories:
     - intent: open_incident
     - intent: password_reset
     - intent: problem_email
+    - intent: problem_program
   - action: open_incident_form
   - active_loop: open_incident_form
   - active_loop: null
   - action: action_open_incident
+
+#- story: incident status form switch to open incident program
+#  steps:
+#  - intent: incident_status
+#  - action: incident_status_form
+#  - active_loop: incident_status_form
+#  - intent: problem_program
+#  - action: open_incident_program_form
+#  - active_loop: open_incident_program_form
+#  - active_loop: null
+#  - action: action_open_incident
 
 - story: open incident form switch to incident status form
   steps:
@@ -97,6 +133,7 @@ stories:
     - intent: open_incident
     - intent: password_reset
     - intent: problem_email
+    - intent: problem_program
   - action: open_incident_form
   - active_loop: open_incident_form
   - intent: incident_status
@@ -104,3 +141,14 @@ stories:
   - active_loop: incident_status_form
   - active_loop: null
   - action: action_check_incident_status
+
+#- story: open incident form switch to incident status form program
+#  steps:
+#  - intent: problem_program
+#  - action: open_incident_program_form
+#  - active_loop: open_incident_program_form
+#  - intent: incident_status
+#  - action: incident_status_form
+#  - active_loop: incident_status_form
+#  - active_loop: null
+#  - action: action_check_incident_status

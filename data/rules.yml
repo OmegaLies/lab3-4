@@ -21,8 +21,15 @@ rules:
       - intent: open_incident
       - intent: password_reset
       - intent: problem_email
+      - intent: problem_program
     - action: open_incident_form
     - active_loop: open_incident_form
+
+#  - rule: start open incident program form
+#    steps:
+#    - intent: problem_program
+#    - action: open_incident_program_form
+#    - active_loop: open_incident_program_form
 
   - rule: submit open incident form
     condition:
@@ -31,6 +38,14 @@ rules:
     - action: open_incident_form
     - active_loop: null
     - action: action_open_incident
+
+#  - rule: submit open incident program form
+#    condition:
+#      - active_loop: open_incident_program_form
+#    steps:
+#      - action: open_incident_program_form
+#      - active_loop: null
+#      - action: action_open_incident
 
   - rule: start incident status form
     steps:

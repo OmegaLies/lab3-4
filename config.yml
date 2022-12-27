@@ -2,6 +2,7 @@ language: en
 pipeline:
   - name: WhitespaceTokenizer
   - name: RegexFeaturizer
+    "case_sensitive": False
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
   - name: CountVectorsFeaturizer
@@ -9,7 +10,7 @@ pipeline:
     min_ngram: 1
     max_ngram: 4
   - name: DIETClassifier
-    epochs: 150
+    epochs: 300
     random_seed: 1
   - name: FallbackClassifier
     threshold: 0.7

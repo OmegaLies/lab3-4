@@ -180,7 +180,8 @@ nlu:
   examples: |
     - I need to open an incident
     - Can you open a case for me
-    - I have an issue I need to open a incident for
+    - I have an issue
+    - I need to open a incident for
     - open incident
     - can you help me open a incident please
     - I want to open a new incident
@@ -240,28 +241,52 @@ nlu:
     - hep me
 - intent: problem_email
   examples: |
-    - my outlook application won't open
-    - I'm having issues with outlook.
-    - issues with outlook
-    - outlook application will not open
+    - I'm having issues with email.
+    - issues with email
+    - email will not open
     - there's a problem with my email
-    - something is broken with outlook
+    - something is broken with email
     - I can't log in to my email
-    - can't log in to outlook
+    - can't log in to email
     - my email won't let me log in
     - i have a problem with my email
     - can't get to slack
     - i cant open my email
-    - i can't able to login
+    - i can't able to login to email
     - I'm having trouble logging into my email
     - can you help me with me with my email please
     - what can you do about my email it's not working
-    - can you fix outlook for me I don't know what to do
+    - can you fix e-mail for me I don't know what to do
     - something isn't right with my e-mail
     - can you help me with my e-mail account
     - my internet mail isn't working
-    - outlook is showing me a weird message
+    - email is showing me a weird message
     - email isn't loading can you help
+- intent: problem_program
+  examples: |
+    - program
+    - application
+    - app
+    - one of programs do not open
+    - I'm having issues with some program
+    - issues with program
+    - my application will not open
+    - there's a problem with program
+    - something is broken with program
+    - I can't start my app
+    - app won't let me use it
+    - i have a problem with program
+    - i cant open my program
+    - i can't able to use program
+    - I'm having trouble using program
+    - can you help me with program please
+    - what can you do about my app it's not working
+    - can you fix program for me I don't know what to do
+    - something isn't right with application
+    - can you help me with my app
+    - my program isn't working
+    - app is showing me a weird message
+    - application isn't loading can you help
 - intent: inform
   examples: |
     - my email is test@example.com
@@ -287,6 +312,18 @@ nlu:
     - sara@rasa.com
     - [urgent]{"entity": "priority", "value": "high"}
     - [critical]{"entity": "priority", "value": "high"}
+- intent: program_name
+  examples: |
+    - [Word](program)
+    - [Excel](program)
+    - [PowerPoint](program)
+    - [Google Chrome](program)
+    - [Opera](program)
+    - [Mozila Firefox](program)
+    - [OutLook](program)
+    - [Skype](program)
+    - [Teams](program)
+    - [OneNote](program)
 - intent: out_of_scope
   examples: |
     - what is the square root of 5

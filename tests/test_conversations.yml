@@ -46,9 +46,9 @@ stories:
       hello
   - action: utter_greet
   - action: utter_help
-  - intent: problem_email
+  - intent: problem_program
     user: |-
-      I have a problem with my email
+      I have a problem with my program
   - action: open_incident_form
   - active_loop: open_incident_form
   - active_loop: null
@@ -56,9 +56,9 @@ stories:
 
 - story: interrupted
   steps:
-  - intent: problem_email
+  - intent: problem_program
     user: |-
-      I have a problem with my email
+      I have a problem with my program
   - action: open_incident_form
   - active_loop: open_incident_form
   - intent: help

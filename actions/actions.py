@@ -28,7 +28,9 @@ class ActionAskEmail(Action):
         domain: Dict[Text, Any],
     ) -> List[Dict]:
         if tracker.get_slot("previous_email"):
-            dispatcher.utter_message(template=f"utter_ask_use_previous_email",)
+            dispatcher.utter_message(
+                template=f"utter_ask_use_previous_email",
+            )
         else:
             dispatcher.utter_message(template=f"utter_ask_email")
         return []
@@ -107,10 +109,11 @@ class ActionOpenIncident(Action):
         was created
         """
 
+        incident_title = tracker.get_slot("incident_title")
+        program = tracker.get_slot("program")
         priority = tracker.get_slot("priority")
         email = tracker.get_slot("email")
         problem_description = tracker.get_slot("problem_description")
-        incident_title = tracker.get_slot("incident_title")
         confirm = tracker.get_slot("confirm")
         if not confirm:
             dispatcher.utter_message(
@@ -124,7 +127,7 @@ class ActionOpenIncident(Action):
                 f"if ServiceNow was connected:\n"
                 f"email: {email}\n"
                 f"problem description: {problem_description}\n"
-                f"title: {incident_title}\npriority: {priority}"
+                f"title: {incident_title}\nprogram: {program}\npriority: {priority}"
             )
         else:
             snow_priority = snow.priority_db().get(priority)
@@ -177,7 +180,7 @@ class ActionCheckIncidentStatus(Action):
         domain: Dict[Text, Any],
     ) -> List[Dict]:
         """Look up all incidents associated with email address
-           and return status of each"""
+        and return status of each"""
 
         email = tracker.get_slot("email")
 

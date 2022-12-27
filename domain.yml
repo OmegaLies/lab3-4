@@ -7,9 +7,11 @@ intents:
 - goodbye
 - bot_challenge
 - password_reset
+- program_name
 - inform
 - thank
 - help
+- problem_program
 - problem_email
 - open_incident:
     use_entities: []
@@ -24,6 +26,7 @@ intents:
 entities:
 - email
 - priority
+- program
 - handoff_to
 slots:
   confirm:
@@ -95,6 +98,12 @@ slots:
       intent: problem_email
       value: Problem with email
       conditions:
+        - active_loop: open_incident_form
+          requested_slot: incident_title
+    - type: from_trigger_intent
+      intent: problem_program
+      value: Problem with program
+      conditions:
       - active_loop: open_incident_form
         requested_slot: incident_title
     - type: from_text
@@ -117,6 +126,16 @@ slots:
       - active_loop: open_incident_form
     - type: from_entity
       entity: priority
+  program:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: program
+        conditions:
+          - active_loop: open_incident_form
+      - type: from_entity
+        entity: program
   problem_description:
     type: text
     influence_conversation: false
@@ -157,6 +176,29 @@ responses:
   - text: What should we use for the title of this incident?
   utter_ask_problem_description:
   - text: What is the problem description for the issue?
+  utter_ask_program:
+  - text: What is the name of program, which isn't working?
+    buttons:
+    - payload: /program_name{"program":"Word"}
+      title: Word
+    - payload: /program_name{"program":"Excel"}
+      title: Excel
+    - payload: /program_name{"program":"Power Point"}
+      title: PowerPoint
+    - payload: /program_name{"program":"Google Chrome"}
+      title: Google Chrome
+    - payload: /program_name{"program":"Opera"}
+      title: Opera
+    - payload: /program_name{"program":"Mozila Firefox"}
+      title: Mozila Firefox
+    - payload: /program_name{"program":"OutLook"}
+      title: OutLook
+    - payload: /program_name{"program":"Skype"}
+      title: Skype
+    - payload: /program_name{"program":"Teams"}
+      title: Teams
+    - payload: /program_name{"program":"OneNote"}
+      title: OneNote
   utter_ask_priority:
   - text: What is the priority of this issue?
     buttons:
@@ -171,7 +213,7 @@ responses:
   utter_no_email:
   - text: Sorry, "{email}" isn't in our incident management system. Please try again.
   utter_help:
-  - text: "I can help you open a service request ticket, or check the status of your open incidents. \nYou can ask me things like: \n- Open an incident \n- Help me reset my password \n- I'm having a issue with my email \n- What's the status of the ticket I opened?"
+  - text: "I can help you open a service request ticket, or check the status of your open incidents. \nYou can ask me things like: \n- Open an incident \n- Help me reset my password \n- I can't login into my email \n- I'm having an issue with one of my programs \n- What's the status of the ticket I opened?"
   utter_welcome:
   - text: You're welcome!
   utter_default:
@@ -179,7 +221,7 @@ responses:
   utter_ask_use_previous_email:
   - text: Would you like to use the last email address you used, {previous_email}?
   utter_ask_confirm:
-  - text: "Should I open an incident with the following details? \n    email: {email} \n    problem description: {problem_description} \n    title: {incident_title} \n    priority: {priority}"
+  - text: "Should I open an incident with the following details? \n    email: {email} \n    problem description: {problem_description} \n    title: {incident_title}\n    program: {program} \n    priority: {priority}"
     buttons:
     - title: Yes
       payload: /affirm
@@ -203,6 +245,7 @@ forms:
     required_slots:
     - email
     - priority
+    - program
     - problem_description
     - incident_title
     - confirm
